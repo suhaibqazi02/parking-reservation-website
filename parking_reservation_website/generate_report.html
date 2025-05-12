@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Report - PARKER</title>
+    <style>
+        /* General body reset and base font */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Consistent Nav Styling */
+        nav {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        nav .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .nav-links li {
+            margin-left: 25px;
+        }
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .nav-links li a:hover, .nav-links li a.active {
+            color: #e67e22;
+        }
+        /* End Nav Styling */
+
+        .page-container { /* Main content container */
+            width: 90%;
+            max-width: 1000px; /* Wider for admin content */
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        /* Form & Report Display Styles */
+        .report-form-container, .report-display-container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        select, button {
+            padding: 10px 12px;
+            width: 100%;
+            margin-bottom: 15px; /* Spacing for select and button */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+        select:focus, button:focus {
+            border-color: #e67e22;
+            outline: none;
+        }
+
+        button {
+            background-color: #e67e22;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+        }
+
+        /* Table Styles for Report Data */
+        #reportTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Space above table */
+        }
+        #reportTable th, #reportTable td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        #reportTable th {
+            background-color: #34495e;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        #reportTable tr:last-child td {
+            border-bottom: none;
+        }
+        #reportTable tr:hover {
+            background-color: #f9f9f9;
+        }
+        #reportTable td {
+            font-size: 0.9rem;
+            color: #444;
+        }
+        .no-data-message {
+            text-align: center;
+            padding: 15px;
+            color: #777;
+        }
+
+        /* Logout Button in Nav */
+        #logoutBtn.nav-button {
+            background-color: #c0392b;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+        #logoutBtn.nav-button:hover {
+            background-color: #a93226;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="admin.html" class="logo">PARKER - Generate Report</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html">Admin Dashboard</a></li>
+                <li><a href="logout.php" id="logoutBtn" class="nav-button">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="report-form-container">
+            <h2>Generate Report</h2>
+            <form id="reportForm">
+                <label for="reportType">Report Type:</label>
+                <select id="reportType" name="reportType">
+                    <option value="daily">Daily Reservations</option>
+                    <option value="weekly">Weekly Reservations</option>
+                    <option value="monthly">Monthly Reservations</option>
+                </select>
+                <button type="submit">Generate Report</button>
+            </form>
+        </div>
+
+        <div class="report-display-container" id="reportResultArea" style="display: none;">
+            <h3>Report Results</h3>
+            <table id="reportTable">
+                <thead>
+                    <!-- Table headers will be set by JS based on data -->
+                </thead>
+                <tbody>
+                    <!-- Report data will be populated here -->
+                </tbody>
+            </table>
+            <p id="noDataMessage" class="no-data-message" style="display: none;">No data found for this report.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('reportForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            generateReport();
+        });
+
+        function generateReport() {
+            const reportType = document.getElementById('reportType').value;
+            const reportResultArea = document.getElementById('reportResultArea');
+            const reportTable = document.getElementById('reportTable');
+            const reportTableHead = reportTable.querySelector('thead');
+            const reportTableBody = reportTable.querySelector('tbody');
+            const noDataMessage = document.getElementById('noDataMessage');
+
+            // Clear previous results
+            reportTableHead.innerHTML = '';
+            reportTableBody.innerHTML = '';
+            noDataMessage.style.display = 'none';
+            reportResultArea.style.display = 'block'; // Show the results area
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'generate_report.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.error) {
+                            displayReportError(response.error);
+                        } else if (response.data && response.data.length > 0) {
+                            populateReportTable(response.data);
+                        } else {
+                            noDataMessage.style.display = 'block';
+                        }
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e, xhr.responseText);
+                        displayReportError('Failed to parse report data.');
+                    }
+                } else {
+                    console.error('Error generating report:', xhr.statusText);
+                    displayReportError('Error generating report: ' + xhr.statusText);
+                }
+            };
+
+            xhr.onerror = function() {
+                console.error('AJAX request failed.');
+                displayReportError('Request failed. Please check your connection.');
+            };
+
+            const data = `reportType=${encodeURIComponent(reportType)}`;
+            xhr.send(data);
+        }
+
+        function populateReportTable(reportData) {
+            const reportTableHead = document.getElementById('reportTable').querySelector('thead');
+            const reportTableBody = document.getElementById('reportTable').querySelector('tbody');
+
+            if (reportData.length === 0) return;
+
+            // Create table headers from the keys of the first object
+            const headers = Object.keys(reportData[0]);
+            const headerRow = reportTableHead.insertRow();
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()); // Format header
+                headerRow.appendChild(th);
+            });
+
+            // Populate table rows
+            reportData.forEach(item => {
+                const row = reportTableBody.insertRow();
+                headers.forEach(header => {
+                    const cell = row.insertCell();
+                    // Format date if it's arrival_time
+                    if (header === 'arrival_time' && item[header]) {
+                        cell.textContent = new Date(item[header]).toLocaleString();
+                    } else {
+                        cell.textContent = item[header] !== null ? item[header] : 'N/A';
+                    }
+                });
+            });
+        }
+
+        function displayReportError(message) {
+            const reportTableBody = document.getElementById('reportTable').querySelector('tbody');
+            const noDataMessage = document.getElementById('noDataMessage');
+            reportTableBody.innerHTML = ''; // Clear any existing table data
+            noDataMessage.textContent = message;
+            noDataMessage.style.display = 'block';
+            noDataMessage.style.color = 'red';
+        }
+
+        const logoutButton = document.getElementById('logoutBtn');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                if (confirm("Are you sure you want to logout?")) {
+                    window.location.href = this.href;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

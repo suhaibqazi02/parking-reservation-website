@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Reservation - PARKER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cancel-form {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            background-color: #ff0000;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #cc0000;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cancel Reservation</h2>
+    <div class="cancel-form">
+        <form id="cancel-form" action="cancel_reservation.php" method="post" onsubmit="return confirmCancellation();">
+      
+            <div class="input-group">
+                <label for="licence-plate-number">License Plate Number</label>
+                <input type="text" id="licence-plate-number" name="licence_plate_number" required>
+            </div>
+            <button type="submit" class="btn">Confirm Cancellation</button>
+        </form>
+        <div class="message" id="cancel-message"></div>
+    </div>
+</div>
+
+<script>
+    function confirmCancellation() {
+      // Get the license plate number from the form
+      var licensePlate = document.getElementById('license-plate-number').value;
+  
+      // Use XMLHttpRequest object to send AJAX request to cancel_reservation.php
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'cancel_reservation.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  
+      // Send license plate number as form data
+      var data = 'licence_plate_number=' + licensePlate;
+      xhr.send(data);
+  
+      // Handle response from cancel_reservation.php
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // Handle successful cancellation response
+          if (confirm("Reservation deleted successfully. Go back to homepage?")) {
+            window.location.href = "index.html";
+          }
+        } else {
+          // Handle error response
+          document.getElementById('cancel-message').innerHTML = "Error cancelling reservation: " + xhr.statusText;
+        }
+      };
+  
+      // Prevent default form submission behavior
+      return false;
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?php
+// Redirect to the main HTML homepage
+header("Location: index.html");
+exit();
+?>
+<?php
+// Redirect to the main homepage
+header("Location: index.html"); // Update to "home.php" or another file if needed
+exit();
+?>

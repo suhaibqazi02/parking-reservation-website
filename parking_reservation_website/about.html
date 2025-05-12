@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - PARKER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Navbar styles */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0; /* Reduced padding */
+            overflow: hidden; /* Clear the float */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 90%; /* Increased width for better spacing */
+            margin: 0 auto; /* Centering container */
+        }
+
+        .logo {
+            float: left;
+            font-size: 1.8rem; /* Slightly larger logo */
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            float: right;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin-left: 25px; /* Increased spacing */
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1rem; /* Consistent font size */
+        }
+
+        .nav-links li a:hover, .nav-links li a.active { /* Added active class styling */
+            color: #ff6600;
+        }
+
+        /* About Us styles */
+        .content-container { /* Renamed for clarity */
+            width: 80%;
+            margin: 40px auto; /* Increased top/bottom margin */
+            text-align: center;
+            background-color: #fff; /* Added background to content */
+            padding: 30px; /* Added padding */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Subtle shadow */
+        }
+
+        .about-img {
+            width: 250px; /* Slightly smaller image */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 25px; /* Increased margin */
+            border-radius: 5px; /* Rounded image corners */
+        }
+
+        .about-text {
+            color: #555; /* Slightly lighter text */
+            font-size: 1.1rem; /* Larger text for readability */
+            line-height: 1.6; /* Improved line spacing */
+            text-align: justify; /* Justify text for a cleaner look */
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px; /* Space below heading */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <h1 class="logo">PARKER</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-container"> 
+        <h1>Welcome To Parker</h1>
+        <img src="car.JPG" alt="About Us Image" class="about-img">
+        <p class="about-text">At PARKER, we are dedicated to providing seamless vehicle reservation services to our customers. Our mission is to make parking hassle-free and convenient for everyone. Whether you're planning a trip or just need a spot for your vehicle in a busy city, PARKER has got you covered.</p>
+        <p class="about-text">With a user-friendly platform and a wide network of parking spots, we strive to make your parking experience stress-free. Our team is committed to delivering excellent customer service and ensuring your satisfaction with every reservation.</p>
+    </div>
+
+</body>
+</html>

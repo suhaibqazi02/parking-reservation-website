@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Report - PARKER</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container1{
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+        }
+
+        /* Navigation bar styles */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            margin-right: 20px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .nav-links li:last-child {
+            margin-right: 0;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ff6600;
+        }
+
+        /* Report form styles */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        select, button {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e96c13;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container container1">
+            <a href="admin.html" class="logo">PARKER - Generate Report</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html">Admin Dashboard</a></li>
+                <li><a href="index.html" id="logoutBtn">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Generate Report</h2>
+        <form id="reportForm" action="generate_report.php" onsubmit="generateReport(); return false;">
+            <label for="reportType">Report Type:</label>
+            <select id="reportType" name="reportType">
+                <option value="daily">Daily Report</option>
+                <option value="weekly">Weekly Report</option>
+                <option value="monthly">Monthly Report</option>
+            </select>
+            <button type="submit">Generate Report</button>
+        </form>
+    </div>
+
+    <script>
+       function generateReport() {
+    const reportType = document.getElementById('reportType').value;
+
+    // Create an AJAX request
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'generate_report.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Log when the request is sent
+    console.log('Sending AJAX request...');
+
+    // Send the report type data to the backend script
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const reportData = JSON.parse(xhr.responseText);
+            console.log('Received report data:', reportData);
+        } else {
+            console.error('Error generating report:', xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error('AJAX request failed.');
+    };
+
+    const data = `reportType=${reportType}`;
+    xhr.send(data);
+}
+
+      </script>
+      
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARKER - Reserve Now</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            overflow: hidden;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            float: left;
+            font-size: 1.5rem;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .nav-links {
+            float: right;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ff6600;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .reservation-form {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            background-color: #ff6600;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e96c13;
+        }
+
+        .switch-text {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .switch-text a {
+            color: #ff6600;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .switch-text a:hover {
+            text-decoration: underline;
+        }
+
+        .bill {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+ 
+<nav>
+    <div class="container">
+        <h1 class="logo">PARKER</h1>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="login.html">Login/Signup</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Reserve Your Parking Spot</h2>
+    <div class="reservation-form">
+        <form id="reservation-form" action="reservation.php" method="post">
+
+            <div class="input-group">
+                <label for="vehicle-type">Vehicle Type</label>
+                <input type="text" id="vehicle-type" name="vehicle_type" required>
+            </div>
+            <div class="input-group">
+                <label for="license-plate">License Plate Number</label>
+                <input type="text" id="license-plate" name="licence_plate_number" required>
+            </div>
+            <div class="input-group">
+                <label for="arrival-time">Arrival Time</label>
+                <input type="datetime-local" id="arrival-time" name="arrival_time" required>
+            </div>
+            <div class="input-group">
+                <label for="parking-spot">Choose Parking Spot</label>
+                <select id="parking-spot" name="spot" required>
+                    <option value="" disabled selected>Select a spot</option>
+                    <!-- Add options for all available parking spots -->
+                    <option value="1">Spot 1</option>
+                    <option value="2">Spot 2</option>
+                    <option value="3">Spot 3</option>
+                    <option value="4">Spot 4</option>
+                    <option value="5">Spot 5</option>
+                    <option value="6">Spot 6</option>
+                    <option value="7">Spot 7</option>
+                    <option value="8">Spot 8</option>
+                    <option value="9">Spot 9</option>
+                    <option value="10">Spot 10</option>
+                    <option value="11">Spot 11</option>
+                    <option value="12">Spot 12</option>
+                    <option value="13">Spot 13</option>
+                    <option value="14">Spot 14</option>
+                    <option value="15">Spot 15</option>
+                    <option value="16">Spot 16</option>
+                    <option value="17">Spot 17</option>
+                    <option value="18">Spot 18</option>
+                    <option value="19">Spot 19</option>
+                    <option value="20">Spot 20</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="parking-hours">Parking Hours</label>
+                <input type="number" id="parking-hours" name="parking_hours" required>
+            </div>
+            <button type="submit" class="btn">Reserve Now</button>
+        </form>
+        <div class="switch-text">
+            Already have a reservation? <a href="login.html">Log In</a>
+        </div>
+        <div class="bill" id="bill"></div>
+    </div>
+</div>
+
+<script>
+    // Define the calculateBill() function here (if needed)
+function calculateBill() {
+  // ... (your logic to generate reservation ID, calculate bill amount, etc.)
+  
+  // Update the bill content with calculated values
+  var billContent = "<h3>Reservation Successful!</h3><p>Your bill amount: " + billAmount + " rupees</p><h4>Redirecting you to Home Page....</h4>";
+  document.getElementById('bill').innerHTML = billContent;
+}
+
+// Redirect with 2 seconds delay (assuming this logic is in script.js)
+function redirectToIndex() {
+  setTimeout(function() {
+    window.location.href = "index.html";
+  }, 2000); // 2 seconds delay in milliseconds
+
+  if (window.location.search.includes('success=true')) {
+  // Call calculateBill() function if needed (assuming it's defined elsewhere)
+  // calculateBill(); // Uncomment this line if you need to calculate bill amount
+
+  // Redirect after successful registration (assuming bill amount is available)
+  redirectToIndex();
+}
+}
+
+
+</script>
+
+</body>
+</html>

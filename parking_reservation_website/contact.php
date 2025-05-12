@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PARKER</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f8ff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: #e67e22;
+        }
+
+        .page-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .contact-form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form-container input,
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        .contact-form-container input:focus,
+        .contact-form-container textarea:focus {
+            border-color: #e67e22;
+            box-shadow: 0 0 10px rgba(230, 126, 34, 0.3);
+            outline: none;
+            background-color: #fff;
+        }
+
+        .contact-form-container textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form-container button {
+            width: 100%;
+            background-color: #e67e22;
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form-container button:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+        }
+
+        .word-limit {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: right;
+        }
+
+        .limit-message {
+            font-size: 0.9rem;
+            color: #e74c3c;
+            text-align: right;
+            display: none;
+        }
+
+        .success-message {
+            background-color: #e9f7ef;
+            color: #2a7c2e;
+            border: 1px solid #a3e9a4;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+    <script>
+        function enforceWordLimit() {
+            const textarea = document.getElementById('message');
+            const wordLimit = 10;
+            const wordCountDisplay = document.getElementById('wordCount');
+            const limitMessage = document.getElementById('limitMessage');
+
+            textarea.addEventListener('input', () => {
+                const words = textarea.value.trim().split(/\s+/);
+                if (words.length > wordLimit) {
+                    textarea.value = words.slice(0, wordLimit).join(' ');
+                    limitMessage.style.display = 'block';
+                } else {
+                    limitMessage.style.display = 'none';
+                }
+                wordCountDisplay.textContent = `${Math.min(words.length, wordLimit)} / ${wordLimit} words`;
+            });
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            // Simulate successful submission
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Redirect after 3 seconds
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            enforceWordLimit();
+            document.getElementById('contactForm').addEventListener('submit', handleFormSubmission);
+        });
+    </script>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">PARKER</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <h2>Contact Us</h2>
+        <div class="contact-form-container">
+            <form id="contactForm" action="contact.php" method="post">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                <div class="word-limit" id="wordCount">0 / 10 words</div>
+                <div class="limit-message" id="limitMessage">You have reached the word limit!</div>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="success-message" id="successMessage">
+                Thank you! Your message has been sent successfully. Redirecting to home...
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

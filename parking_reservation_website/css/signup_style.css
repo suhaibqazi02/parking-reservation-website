@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full viewport height */
+    color: #333;
+}
+
+.container {
+    max-width: 420px; /* Slightly wider for better spacing */
+    width: 90%; /* Responsive width */
+    background-color: #fff;
+    border-radius: 8px; /* Softer radius */
+    padding: 35px; /* Increased padding */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 25px; /* Adjusted margin */
+    color: #2c3e50; /* Dark blue-gray heading */
+    font-size: 1.8rem; /* Adjusted font size */
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem; /* Adjusted font size */
+    margin-bottom: 8px; /* Increased margin */
+    color: #555; /* Slightly lighter label color */
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px; /* Increased padding */
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #e67e22; /* Orange border on focus */
+    outline: none; /* Remove default outline */
+}
+
+.btn {
+    width: 100%;
+    background-color: #e67e22; /* Consistent orange */
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem; /* Adjusted font size */
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #d35400; /* Darker orange on hover */
+    transform: translateY(-2px);
+}
+
+.switch-text {
+    margin-top: 25px; /* Increased margin */
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.switch-text a {
+    color: #e67e22; /* Orange link color */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.switch-text a:hover {
+    text-decoration: underline;
+}

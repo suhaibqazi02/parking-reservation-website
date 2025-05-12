@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARKER - Admin Dashboard</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif; /* Modern font stack */
+            background-color: #f8f9fa; /* Lighter background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation bar styles */
+        nav {
+            background-color: #343a40; /* Darker, more modern navbar */
+            color: #fff;
+            padding: 15px 0; /* Adjusted padding */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container { /* Specific for nav container */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem; /* Slightly larger logo */
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Align links horizontally */
+        }
+
+        .nav-links li {
+            margin-left: 25px; /* Spacing between links */
+        }
+
+        .nav-links li:first-child {
+            margin-left: 0;
+        }
+
+        .nav-links li a {
+            color: #f8f9fa; /* Lighter link color */
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active { /* Style for active link if needed */
+            background-color: #ff6600;
+            color: #fff;
+        }
+
+        /* Content area styles */
+        .content {
+            background-color: #fff;
+            padding: 30px; /* Increased padding */
+            border-radius: 8px; /* Softer corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-top: 30px; /* Space from navbar */
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #343a40; /* Darker heading */
+            font-size: 1.8rem;
+        }
+
+        p {
+            color: #555; /* Slightly lighter paragraph text */
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #343a40;
+            font-size: 1.4rem;
+        }
+
+        .action-list { /* New class for the button list */
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+            gap: 15px; /* Space between buttons */
+        }
+
+        .action-list li {
+            flex-basis: calc(50% - 10px); /* Two buttons per row, accounting for gap */
+        }
+
+        .btn {
+            display: block; /* Make buttons take full width of their list item */
+            width: 100%;
+            background-color: #ff6600;
+            color: #fff;
+            padding: 12px 20px; /* Adjusted padding */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            font-size: 1rem;
+            border: none; /* Remove default border */
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e96c13; /* Darken on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="admin.html" class="logo">PARKER - Admin</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" id="logoutBtn">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="content">
+        <h2>Welcome to the Admin Dashboard</h2>
+        <p>Hi Admin, what would you like to do today?</p>
+        <ul class="action-list">
+            <li><a href="reserve_spots.php" class="btn">View Reservation List</a></li>
+            <li><a href="cancel_reservation.html" class="btn">Cancel Reservation</a></li>
+            <li><a href="generate_report.html" class="btn">Generate Report</a></li>
+            <li><a href="users.php" class="btn">View Users</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // JavaScript for the logout confirmation dialog
+    document.getElementById('logoutBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default action of the anchor tag
+
+        // Display a confirmation dialog
+        if (confirm("Are you sure you want to logout?")) {
+            // If the admin confirms, redirect to the logout page
+            window.location.href = "logout.html"; // Replace with the actual logout page URL
+        }
+    });
+</script>
+
+</body>
+</html>
